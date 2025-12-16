@@ -1,0 +1,102 @@
+.calendar-widget {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9em;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendar-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.calendar-nav-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.calendar-nav-btn:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    text-align: center;
+}
+
+.calendar-day-header {
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    padding-bottom: 5px;
+}
+
+.calendar-day {
+    padding: 6px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.calendar-day:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+.calendar-day.empty {
+    cursor: default;
+}
+
+.calendar-day.today {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.calendar-day.has-notes {
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.calendar-day.has-notes::after {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.calendar-day.selected {
+    background-color: var(--accent-color);
+    color: white !important;
+    /* Force white text for contrast */
+}
+
+.calendar-day.selected::after {
+    background-color: white;
+    /* White dot on selected */
+}
+
+/* Ensure no hover effect messes up selected state contrast */
+.calendar-day.selected:hover {
+    background-color: var(--accent-color);
+}

@@ -1,0 +1,238 @@
+:root {
+  /* Colors - Premium Palette */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f7f7f7;
+  --bg-tertiary: #e0e0e0;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --accent-color: #27ae60;
+  /* Evernote Green-ish but more modern */
+  --accent-hover: #2ecc71;
+  --border-color: #e0e0e0;
+  --selection-bg: #e8f5e9;
+
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+
+  /* Transitions */
+  --transition-speed: 0.2s;
+}
+
+/* Dark Mode Support (Optional for now, but good to have vars ready) */
+/* Dark Mode Support */
+/* Dark Mode Support */
+[data-theme='dark'] {
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #252526;
+  --bg-tertiary: #333333;
+  --text-primary: #ecf0f1;
+  --text-secondary: #bdc3c7;
+  --border-color: #333333;
+  --selection-bg: #2c3e50;
+  --hover-bg: #333333;
+}
+
+/* Catppuccin Latte (Light) */
+[data-theme='catppuccin-latte'] {
+  --bg-primary: #eff1f5;
+  --bg-secondary: #e6e9ef;
+  --bg-tertiary: #ccd0da;
+  --text-primary: #4c4f69;
+  --text-secondary: #6c6f85;
+  --accent-color: #40a02b;
+  /* Green */
+  --accent-hover: #179299;
+  /* Teal */
+  --border-color: #ccd0da;
+  --selection-bg: #acb0be;
+  --hover-bg: #bcc0cc;
+}
+
+/* Everforest Light */
+[data-theme='everforest-light'] {
+  --bg-primary: #fdf6e3;
+  --bg-secondary: #f4f0d9;
+  --bg-tertiary: #eaddb5;
+  --text-primary: #5c6a72;
+  --text-secondary: #939f91;
+  --accent-color: #8da101;
+  --accent-hover: #a7c080;
+  --border-color: #e0dcc7;
+  --selection-bg: #d3c6aa;
+  --hover-bg: #eaddb5;
+}
+
+/* Nord (Dark) */
+[data-theme='nord'] {
+  --bg-primary: #2e3440;
+  --bg-secondary: #3b4252;
+  --bg-tertiary: #434c5e;
+  --text-primary: #d8dee9;
+  --text-secondary: #e5e9f0;
+  --accent-color: #88c0d0;
+  /* Frost Blue */
+  --accent-hover: #81a1c1;
+  --border-color: #4c566a;
+  --selection-bg: #4c566a;
+  --hover-bg: #434c5e;
+}
+
+/* Gruvbox (Dark) */
+[data-theme='gruvbox'] {
+  --bg-primary: #282828;
+  --bg-secondary: #3c3836;
+  --bg-tertiary: #504945;
+  --text-primary: #ebdbb2;
+  --text-secondary: #a89984;
+  --accent-color: #b8bb26;
+  /* Bright Green */
+  --accent-hover: #fabd2f;
+  /* Bright Yellow */
+  --border-color: #504945;
+  --selection-bg: #665c54;
+  --hover-bg: #504945;
+}
+
+/* Font Size Overrides */
+[data-font-size='small'] {
+  --font-size-base: 12px;
+  --font-size-lg: 14px;
+  --font-size-xl: 18px;
+}
+
+[data-font-size='medium'] {
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+}
+
+[data-font-size='large'] {
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+}
+
+[data-font-size='xl'] {
+  --font-size-base: 20px;
+  --font-size-lg: 24px;
+  --font-size-xl: 28px;
+}
+
+/* Print Styles for PDF Export */
+@media print {
+
+  /* Hide all UI chrome */
+  .sidebar,
+  .note-list,
+  .tab-bar,
+  .editor-toolbar,
+  .editor-footer,
+  .editor-metadata,
+  button,
+  .action-btn,
+  .tag-input-container,
+  .folder-select {
+    display: none !important;
+  }
+
+  /* Make editor full width and clean */
+  .app {
+    display: block !important;
+  }
+
+  .editor {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .editor-body {
+    padding: 20mm !important;
+    max-width: 100% !important;
+  }
+
+  .markdown-preview-container,
+  .editor-textarea-wrapper {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Clean typography */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Show preview if it exists */
+  .markdown-preview {
+    display: block !important;
+  }
+
+  /* Hide textarea in print */
+  textarea {
+    display: none !important;
+  }
+
+  /* Page breaks */
+  h1,
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  pre,
+  blockquote {
+    page-break-inside: avoid;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  overflow: hidden;
+  /* Prevent body scroll, layout handles it */
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
