@@ -1,0 +1,43 @@
+.main-layout {
+    display: grid;
+    /* grid-template-columns is set inline in JSX */
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-primary);
+    overflow: hidden;
+}
+
+.pane {
+    height: 100%;
+    overflow-y: auto;
+    /* Border is now handled by the resizer gap or we can keep it if we want a visual line inside the pane, 
+       but typically the resizer acts as the border */
+}
+
+.sidebar-pane {
+    background-color: var(--bg-secondary);
+}
+
+.note-list-pane {
+    background-color: var(--bg-primary);
+}
+
+.editor-pane {
+    background-color: var(--bg-primary);
+}
+
+.resizer {
+    width: 4px;
+    background-color: transparent;
+    cursor: col-resize;
+    transition: background-color 0.2s ease;
+    z-index: 10;
+    /* Center the visual line if we want one, or just use the background */
+    border-left: 1px solid var(--border-color);
+}
+
+.resizer:hover,
+.resizer.active {
+    background-color: var(--primary-color, #3b82f6);
+    border-left-color: transparent;
+}

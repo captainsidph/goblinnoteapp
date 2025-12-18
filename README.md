@@ -1,3 +1,5 @@
+
 # goblinapp
-A gobline themed note app made with reactjs. 
+A goblin themed note app made with reactjs. 
+
 

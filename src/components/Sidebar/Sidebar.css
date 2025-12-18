@@ -1,0 +1,204 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+.sidebar-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.avatar {
+    width: 24px;
+    height: 24px;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.new-note-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.new-note-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+.sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    margin-bottom: 2px;
+    font-size: var(--font-size-base);
+}
+
+.nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    background-color: var(--selection-bg);
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.nav-section {
+    margin-top: var(--spacing-lg);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    margin-bottom: var(--spacing-xs);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+}
+
+.add-icon {
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity var(--transition-speed);
+}
+
+.section-header:hover .add-icon {
+    opacity: 1;
+}
+
+.trash-item {
+    margin-top: var(--spacing-lg);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    padding-top: var(--spacing-sm);
+}
+
+/* Nesting Styles */
+/* Add new dropdown styles */
+.theme-dropdown-menu {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 4px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    margin-bottom: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.theme-dropdown-item {
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.theme-dropdown-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.theme-dropdown-item.active {
+    background-color: var(--selection-bg);
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+display: flex;
+flex-direction: column;
+}
+
+.sidebar-item-children {
+    display: flex;
+    flex-direction: column;
+}
+
+.expand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    border-radius: 4px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+.expand-icon:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+}
+
+.nav-item .item-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Delete Icon */
+.delete-icon {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    margin-left: 4px;
+    color: var(--text-secondary);
+}
+
+.delete-icon:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #ff4444;
+}
+
+.nav-item:hover .delete-icon {
+    display: flex;
+}
