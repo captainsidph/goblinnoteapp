@@ -103,6 +103,10 @@ class CloudStorageService {
             throw error;
         }
     }
+
+    getRedirectUri() {
+        return REDIRECT_URI;
+    }
 }
 
 export const cloudService = new CloudStorageService();

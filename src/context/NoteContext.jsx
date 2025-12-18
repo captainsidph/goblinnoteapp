@@ -696,6 +696,7 @@ export const NoteProvider = ({ children }) => {
     };
 
     const isDropboxConnected = () => cloudService.isConnected();
+    const getDropboxRedirectUri = () => cloudService.getRedirectUri();
 
     const uploadBackup = async () => {
         setIsLoading(true); // Reuse main loading or local?
@@ -805,8 +806,8 @@ export const NoteProvider = ({ children }) => {
         loginWithDropbox,
         checkForRedirect,
         disconnectDropbox,
-        disconnectDropbox,
         isDropboxConnected,
+        getDropboxRedirectUri,
         uploadBackup,
         listCloudBackups,
         restoreFromCloud,

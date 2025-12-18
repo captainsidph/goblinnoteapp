@@ -17,6 +17,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
         restoreFromCloud,
         loginWithDropbox,
         checkForRedirect,
+        getDropboxRedirectUri,
         theme,
         setTheme,
         fontSize,
@@ -285,6 +286,29 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                     onChange={(e) => setAppKey(e.target.value)}
                                     className="file-input"
                                 />
+
+                                <div style={{ marginTop: '8px', marginBottom: '12px' }}>
+                                    <label style={{ fontSize: '11px', fontWeight: 'bold', color: 'var(--text-secondary)', display: 'block', marginBottom: '4px' }}>
+                                        Authorized Redirect URI
+                                    </label>
+                                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center', background: 'var(--bg-secondary)', padding: '6px 10px', borderRadius: '4px', border: '1px solid var(--border-color)' }}>
+                                        <code style={{ fontSize: '11px', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis' }}>{getDropboxRedirectUri()}</code>
+                                        <button
+                                            className="modal-btn secondary"
+                                            onClick={() => {
+                                                navigator.clipboard.writeText(getDropboxRedirectUri());
+                                                setStatusMsg("Redirect URI copied to clipboard!");
+                                            }}
+                                            style={{ fontSize: '10px', padding: '2px 6px', minWidth: 'auto' }}
+                                        >
+                                            Copy
+                                        </button>
+                                    </div>
+                                    <p style={{ fontSize: '10px', color: 'var(--text-secondary)', marginTop: '4px' }}>
+                                        Add this exact URI to your Dropbox App Console settings.
+                                    </p>
+                                </div>
+
                                 <button
                                     className="modal-btn primary"
                                     onClick={handleLoginDropbox}

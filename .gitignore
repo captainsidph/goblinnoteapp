@@ -19,6 +19,9 @@ dist-ssr
 .DS_Store
 *.suo
 *.ntvs*
-*.njsproj
+*.njsproj app.
 *.sln
 *.sw?
+
+# Custom bat script to launch the app.
+Start Note App.bat
