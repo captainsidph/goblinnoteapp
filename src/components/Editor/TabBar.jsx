@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNotes } from '../../context/NoteContext';
-import { X } from 'lucide-react';
+import FluentEmoji from '../FluentEmoji';
 import './TabBar.css';
 
 const TabBar = () => {
@@ -38,7 +38,7 @@ const TabBar = () => {
                             onClick={(e) => handleCloseTab(e, note.id)}
                             aria-label="Close tab"
                         >
-                            <X size={14} />
+                            <FluentEmoji name="Clear" size={12} />
                         </button>
                     </div>
                 ))}

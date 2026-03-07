@@ -1,30 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import { useNotes } from '../../context/NoteContext';
-import {
-    FileText,
-    Folder,
-    Tag,
-    Trash2,
-    Plus,
-    Settings,
-    Moon,
-    Sun,
-    CheckSquare,
-    Star,
-    ChevronRight,
-    ChevronDown,
-    MoreVertical,
-    Calendar
-} from 'lucide-react';
 import CreateModal from '../Modals/CreateModal';
 import SettingsModal from '../Modals/SettingsModal';
 import CalendarWidget from './CalendarWidget';
+import FluentEmoji from '../FluentEmoji';
 import './Sidebar.css';
 
 const SidebarItem = ({ item, type, level = 0, onSelect, activeId, onToggleExpand, expandedIds, onDelete, onNoteDrop }) => {
     const hasChildren = item.children && item.children.length > 0;
     const isExpanded = expandedIds.includes(item.id);
-    const Icon = type === 'folder' ? Folder : Tag;
+    const isTag = type === 'tag';
     const [isDragOver, setIsDragOver] = useState(false);
 
     const handleDragOver = (e) => {
@@ -71,9 +56,11 @@ const SidebarItem = ({ item, type, level = 0, onSelect, activeId, onToggleExpand
                     }}
                     style={{ visibility: hasChildren ? 'visible' : 'hidden', marginRight: '4px' }}
                 >
-                    {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                    {isExpanded ? <FluentEmoji name="ChevronDown" size={14} className="skeu-icon" /> : <FluentEmoji name="ChevronRight" size={14} className="skeu-icon" />}
                 </div>
-                <Icon size={18} />
+                <div className="nav-icon-wrapper">
+                    <FluentEmoji name={isTag ? 'Tag' : 'Folder'} size={20} />
+                </div>
                 <span className="item-name" style={{ flex: 1 }}>{item.name}</span>
 
                 <div
@@ -86,7 +73,7 @@ const SidebarItem = ({ item, type, level = 0, onSelect, activeId, onToggleExpand
                     }}
                     title={`Delete ${type}`}
                 >
-                    <Trash2 size={14} />
+                    <FluentEmoji name="Trash" size={14} />
                 </div>
             </div>
             {hasChildren && isExpanded && (
@@ -111,7 +98,7 @@ const SidebarItem = ({ item, type, level = 0, onSelect, activeId, onToggleExpand
     );
 };
 
-const Sidebar = () => {
+const Sidebar = ({ onSelect }) => {
     const {
         folders,
         tags,
@@ -236,7 +223,7 @@ const Sidebar = () => {
                         <span className="username">User</span>
                     </div>
                     <button className="new-note-btn" onClick={addNote}>
-                        <Plus size={16} />
+                        <FluentEmoji name="Plus" size={18} />
                         <span>New Note</span>
                     </button>
                 </div>
@@ -247,9 +234,12 @@ const Sidebar = () => {
                         onClick={() => {
                             setFilter({ type: 'pinned' });
                             setActivePage('notes');
+                            if (onSelect) onSelect();
                         }}
                     >
-                        <Star size={18} />
+                        <div className="nav-icon-wrapper">
+                            <FluentEmoji name="Star" size={20} />
+                        </div>
                         <span>Favorites</span>
                     </div>
 
@@ -258,9 +248,10 @@ const Sidebar = () => {
                         onClick={() => {
                             setFilter({ type: 'all' });
                             setActivePage('notes');
+                            if (onSelect) onSelect();
                         }}
                     >
-                        <FileText size={18} />
+                        <FluentEmoji name="Memo" size={20} />
                         <span>All Notes</span>
                     </div>
 
@@ -269,7 +260,7 @@ const Sidebar = () => {
                         className={`nav-item ${showCalendar ? 'active' : ''}`}
                         onClick={() => setShowCalendar(!showCalendar)}
                     >
-                        <Calendar size={18} />
+                        <FluentEmoji name="Calendar" size={20} />
                         <span>Calendar</span>
                     </div>
 
@@ -283,9 +274,10 @@ const Sidebar = () => {
                     <div className="nav-section">
                         <div className="section-header">
                             <span className="section-title">FOLDERS</span>
-                            <Plus
+                            <FluentEmoji
+                                name="Plus"
                                 size={14}
-                                className="add-icon"
+                                className="add-icon skeu-btn"
                                 onClick={() => openModal('folder')}
                             />
                         </div>
@@ -299,6 +291,7 @@ const Sidebar = () => {
                                     onSelect={(item) => {
                                         setFilter({ type: 'folder', id: item.id });
                                         setActivePage('notes');
+                                        if (onSelect) onSelect();
                                     }}
                                     onToggleExpand={toggleExpand}
                                     expandedIds={expandedIds}
@@ -312,9 +305,10 @@ const Sidebar = () => {
                     <div className="nav-section">
                         <div className="section-header">
                             <span className="section-title">TAGS</span>
-                            <Plus
+                            <FluentEmoji
+                                name="Plus"
                                 size={14}
-                                className="add-icon"
+                                className="add-icon skeu-btn"
                                 onClick={() => openModal('tag')}
                             />
                         </div>
@@ -332,6 +326,7 @@ const Sidebar = () => {
                                     onSelect={(item) => {
                                         setFilter({ type: 'tag', id: item.name });
                                         setActivePage('notes');
+                                        if (onSelect) onSelect();
                                     }}
                                     onToggleExpand={toggleExpand}
                                     expandedIds={expandedIds}
@@ -347,9 +342,10 @@ const Sidebar = () => {
                         onClick={() => {
                             setFilter({ type: 'trash' });
                             setActivePage('notes');
+                            if (onSelect) onSelect();
                         }}
                     >
-                        <Trash2 size={18} />
+                        <FluentEmoji name="Trash" size={20} />
                         <span>Trash</span>
                     </div>
 
@@ -357,9 +353,12 @@ const Sidebar = () => {
 
                     <div
                         className={`nav-item ${activePage === 'tasks' ? 'active' : ''}`}
-                        onClick={() => setActivePage('tasks')}
+                        onClick={() => {
+                            setActivePage('tasks');
+                            if (onSelect) onSelect();
+                        }}
                     >
-                        <CheckSquare size={18} />
+                        <FluentEmoji name="Check" size={20} />
                         <span>Tasks</span>
                     </div>
                 </nav>
@@ -369,11 +368,13 @@ const Sidebar = () => {
                         className="nav-item"
                         onClick={() => setIsSettingsOpen(true)}
                     >
-                        <Settings size={18} />
+                        <FluentEmoji name="Gear" size={20} />
                         <span>Settings</span>
                     </div>
                     <div className="nav-item theme-toggle" onClick={toggleThemeMenu} title="Select Theme" style={{ position: 'relative' }}>
-                        {theme === 'dark' || theme === 'nord' || theme === 'gruvbox' ? <Moon size={18} /> : <Sun size={18} />}
+                        <div className="nav-icon-wrapper">
+                            <FluentEmoji name={theme === 'dark' || theme === 'nord' || theme === 'gruvbox' ? 'Moon' : 'Sun'} size={20} />
+                        </div>
                         <span>Theme</span>
 
                         {showThemeMenu && (

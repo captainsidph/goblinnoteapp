@@ -12,7 +12,9 @@
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .task-header h1 {
@@ -144,6 +146,7 @@
 .task-tags {
     display: flex;
     gap: 6px;
+    flex-wrap: wrap;
 }
 
 .task-tag {
@@ -188,6 +191,7 @@
     display: flex;
     gap: 12px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .control-btn {

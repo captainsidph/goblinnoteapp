@@ -3,15 +3,44 @@
     /* grid-template-columns is set inline in JSX */
     height: 100vh;
     width: 100vw;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-app);
     overflow: hidden;
+    padding: 12px;
 }
 
 .pane {
     height: 100%;
     overflow-y: auto;
-    /* Border is now handled by the resizer gap or we can keep it if we want a visual line inside the pane, 
-       but typically the resizer acts as the border */
+    background-color: var(--bg-primary);
+    border-radius: var(--pane-border-radius);
+    box-shadow: var(--pane-shadow);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+    /* Ensure content doesn't overflow rounded corners */
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    transition: box-shadow 0.3s ease;
+}
+
+.pane::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: var(--pane-inner-glow);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 11;
+}
+
+[data-theme='dark'] .pane,
+[data-theme='nord'] .pane,
+[data-theme='gruvbox'] .pane {
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .sidebar-pane {
@@ -27,17 +56,108 @@
 }
 
 .resizer {
-    width: 4px;
+    width: 100%;
     background-color: transparent;
     cursor: col-resize;
     transition: background-color 0.2s ease;
-    z-index: 10;
-    /* Center the visual line if we want one, or just use the background */
-    border-left: 1px solid var(--border-color);
+    z-index: 20;
+    position: relative;
 }
 
-.resizer:hover,
-.resizer.active {
+.resizer::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 40px;
+    background-color: var(--border-color);
+    border-radius: 2px;
+    opacity: 0.5;
+    transition: opacity 0.2s ease, height 0.2s ease;
+}
+
+.resizer:hover::after,
+.resizer.active::after {
+    opacity: 1;
+    height: 60px;
     background-color: var(--primary-color, #3b82f6);
-    border-left-color: transparent;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .main-layout {
+        padding: 0;
+        grid-template-columns: 1fr !important;
+    }
+
+    .pane {
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+    }
+
+    .sidebar-pane {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        bottom: 0;
+        width: 280px;
+        z-index: 1000;
+        transition: left 0.3s transition-speed ease; /* Fixed typo in plan potentially */
+        transition: left 0.3s ease;
+        background-color: var(--bg-secondary);
+        border-right: 1px solid var(--border-color);
+        border-radius: 0 16px 16px 0 !important;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .sidebar-open .sidebar-pane {
+        left: 0;
+    }
+
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 999;
+        backdrop-filter: blur(2px);
+    }
+
+    .hidden-mobile {
+        display: none !important;
+    }
+
+    .resizer {
+        display: none !important;
+    }
+
+    .note-list-pane, .editor-pane {
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        box-shadow: var(--btn-shadow);
+        transition: all 0.2s ease;
+        padding: 0;
+    }
+
+    .mobile-menu-btn:active {
+        box-shadow: none;
+        transform: translateY(2px);
+    }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNotes } from '../../context/NoteContext';
-import { X, ArrowRight, Save, Copy } from 'lucide-react';
+import FluentEmoji from '../FluentEmoji';
 import './CreateModal.css';
 import './SettingsModal.css';
 
@@ -30,7 +30,7 @@ const ConflictResolutionModal = ({ isOpen, conflicts, onClose }) => {
                     <h2>Resolve Conflict ({currentIndex + 1}/{conflicts.length})</h2>
                     {/* No close button, force resolution? Or maybe allow cancel? Let's allow cancel but verify logic. */}
                     {/* Ideally user should resolve all. If they close, what happens? Notes are left in conflicting state? No, they were not imported yet. So effectively 'Keep Local'. */}
-                    <button className="close-btn" onClick={onClose}><X size={18} /></button>
+                    <button className="close-btn" onClick={onClose}><FluentEmoji name="Clear" size={18} /></button>
                 </div>
 
                 <div className="modal-body conflict-container">
@@ -63,10 +63,10 @@ const ConflictResolutionModal = ({ isOpen, conflicts, onClose }) => {
                             Keep Local
                         </button>
                         <button className="modal-btn secondary" onClick={() => handleResolve('keep_both')}>
-                            <Copy size={16} style={{ marginRight: '6px' }} /> Keep Both
+                            <FluentEmoji name="Copy" size={16} style={{ marginRight: '6px' }} /> Keep Both
                         </button>
                         <button className="modal-btn primary" onClick={() => handleResolve('keep_imported')}>
-                            <Save size={16} style={{ marginRight: '6px' }} /> Overwrite with Imported
+                            <FluentEmoji name="Save" size={16} style={{ marginRight: '6px' }} /> Overwrite with Imported
                         </button>
                     </div>
                 </div>

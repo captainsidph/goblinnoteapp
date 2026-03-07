@@ -699,7 +699,6 @@ export const NoteProvider = ({ children }) => {
     const getDropboxRedirectUri = () => cloudService.getRedirectUri();
 
     const uploadBackup = async () => {
-        setIsLoading(true); // Reuse main loading or local?
         try {
             const data = {
                 notes,
@@ -709,9 +708,6 @@ export const NoteProvider = ({ children }) => {
                 timestamp: Date.now()
             };
             const jsonString = JSON.stringify(data, null, 2);
-            const fileName = `note-app-backup-${new Date().toISOString().slice(0, 10)}.json`; // Basic name
-            // Add time to make it unique? Dropbox overwrites by default in our service logic or we can append time.
-            // Let's stick to date for simplicity, maybe add time.
             const uniqueName = `backup-${new Date().getTime()}.json`;
 
             await cloudService.upload(uniqueName, jsonString);
@@ -719,8 +715,6 @@ export const NoteProvider = ({ children }) => {
         } catch (error) {
             console.error("Upload failed", error);
             return { success: false, error: error.message };
-        } finally {
-            setIsLoading(false);
         }
     };
 
@@ -738,7 +732,6 @@ export const NoteProvider = ({ children }) => {
     };
 
     const restoreFromCloud = async (path) => {
-        setIsLoading(true);
         try {
             const jsonString = await cloudService.download(path);
             // Reuse importData logic!
@@ -746,8 +739,6 @@ export const NoteProvider = ({ children }) => {
         } catch (error) {
             console.error("Cloud Restore failed", error);
             return { success: false, error: error.message };
-        } finally {
-            setIsLoading(false);
         }
     };
     const value = {

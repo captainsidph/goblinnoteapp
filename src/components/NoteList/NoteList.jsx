@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNotes } from '../../context/NoteContext';
-import { Search, Pin, ArrowDownWideNarrow, Trash } from 'lucide-react';
+import FluentEmoji from '../FluentEmoji';
 import './NoteList.css';
 
-const NoteList = () => {
+const NoteList = ({ onMenuClick, isMobile }) => {
     const { filteredNotes, selectedNoteId, setSelectedNoteId, filter, folders, sortOption, setSortOption, togglePin, openTabs, openTab, emptyTrash, searchQuery, setSearchQuery } = useNotes();
 
     const getHeaderTitle = () => {
@@ -19,10 +19,17 @@ const NoteList = () => {
     };
 
     return (
-        <div className="note-list">
+        <div className={`note-list ${isMobile ? 'is-mobile' : ''}`}>
             <div className="note-list-header">
                 <div className="header-top-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <h2>{getHeaderTitle()}</h2>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        {isMobile && onMenuClick && (
+                            <button className="mobile-menu-btn" onClick={onMenuClick}>
+                                <FluentEmoji name="AlignLeft" size={24} />
+                            </button>
+                        )}
+                        <h2>{getHeaderTitle()}</h2>
+                    </div>
                     {filter.type === 'trash' && filteredNotes.length > 0 && (
                         <button
                             className="empty-trash-btn"
@@ -41,7 +48,7 @@ const NoteList = () => {
                                 fontWeight: '500'
                             }}
                         >
-                            <Trash size={14} />
+                            <FluentEmoji name="Trash" size={14} />
                             Empty
                         </button>
                     )}
@@ -51,7 +58,9 @@ const NoteList = () => {
 
             <div className="search-bar-container">
                 <div className="search-bar">
-                    <Search size={16} className="search-icon" />
+                    <div className="nav-icon-wrapper" style={{ margin: 0, width: 20, height: 20 }}>
+                        <FluentEmoji name="Search" size={16} />
+                    </div>
                     <input
                         type="text"
                         placeholder="Search notes..."
@@ -60,7 +69,9 @@ const NoteList = () => {
                     />
                 </div>
                 <div className="sort-wrapper">
-                    <ArrowDownWideNarrow size={16} className="sort-icon" />
+                    <div className="nav-icon-wrapper" style={{ margin: 0, width: 20, height: 20 }}>
+                        <FluentEmoji name="Sort" size={16} />
+                    </div>
                     <select
                         value={sortOption}
                         onChange={(e) => setSortOption(e.target.value)}
@@ -111,7 +122,7 @@ const NoteList = () => {
                                         }}
                                         title={note.isPinned ? "Unpin note" : "Pin note"}
                                     >
-                                        <Pin size={14} className={note.isPinned ? 'fill-current' : ''} />
+                                        <FluentEmoji name="Star" size={14} className={`skeu-icon ${note.isPinned ? 'active' : ''}`} />
                                     </button>
                                 )}
                             </div>

@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useNotes } from '../../context/NoteContext';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import FluentEmoji from '../FluentEmoji';
 import './CalendarWidget.css';
 
 const CalendarWidget = () => {
@@ -92,11 +92,11 @@ const CalendarWidget = () => {
     return (
         <div className="calendar-widget">
             <div className="calendar-header">
-                <button className="calendar-nav-btn" onClick={handlePrevMonth}><ChevronLeft size={16} /></button>
+                <button className="calendar-nav-btn" onClick={handlePrevMonth}><FluentEmoji name="ChevronLeft" size={16} /></button>
                 <div className="calendar-title" onClick={() => setFilter({ type: 'all', id: null })}>
                     {monthNames[month]} {year}
                 </div>
-                <button className="calendar-nav-btn" onClick={handleNextMonth}><ChevronRight size={16} /></button>
+                <button className="calendar-nav-btn" onClick={handleNextMonth}><FluentEmoji name="ChevronRight" size={16} /></button>
             </div>
             <div className="calendar-grid">
                 {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (

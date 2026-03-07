@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Folder, Tag } from 'lucide-react';
+import FluentEmoji from '../FluentEmoji';
 import './CreateModal.css';
 
 const CreateModal = ({ type, isOpen, onClose, onConfirm, parents = [] }) => {
@@ -22,7 +22,7 @@ const CreateModal = ({ type, isOpen, onClose, onConfirm, parents = [] }) => {
             <div className="modal-content">
                 <div className="modal-header">
                     <h2>Create New {type === 'folder' ? 'Folder' : 'Tag'}</h2>
-                    <button className="close-btn" onClick={onClose}><X size={20} /></button>
+                    <button className="close-btn" onClick={onClose}><FluentEmoji name="Clear" size={20} /></button>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">

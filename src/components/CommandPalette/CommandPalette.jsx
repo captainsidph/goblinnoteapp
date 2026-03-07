@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, FileText, Settings, Moon, Sun, Plus, Terminal } from 'lucide-react';
 import { useNotes } from '../../context/NoteContext';
+import { Sun, Moon } from 'lucide-react';
+import FluentEmoji from '../FluentEmoji';
 import './CommandPalette.css';
 
 const CommandPalette = () => {
@@ -52,7 +53,7 @@ const CommandPalette = () => {
         {
             id: 'new-note',
             title: 'Create New Note',
-            icon: <Plus size={18} />,
+            icon: <FluentEmoji name="Plus" size={18} />,
             category: 'Commands',
             action: () => {
                 addNote();
@@ -61,7 +62,7 @@ const CommandPalette = () => {
         {
             id: 'toggle-theme',
             title: `Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`,
-            icon: theme === 'light' ? <Moon size={18} /> : <Sun size={18} />,
+            icon: theme === 'light' ? <FluentEmoji name="Moon" size={18} /> : <FluentEmoji name="Sun" size={18} />,
             category: 'Commands',
             action: () => {
                 toggleTheme();
@@ -134,7 +135,7 @@ const CommandPalette = () => {
         .map(note => ({
             id: note.id,
             title: note.title || 'Untitled',
-            icon: <FileText size={18} />,
+            icon: <FluentEmoji name="FileText" size={18} />,
             category: 'Notes',
             subtext: note.content ? note.content.replace(/[#*`]/g, '').slice(0, 50) + '...' : 'No content',
             action: () => {
@@ -189,7 +190,7 @@ const CommandPalette = () => {
         <div className="command-palette-overlay" onClick={() => setIsOpen(false)}>
             <div className="command-palette-modal" onClick={e => e.stopPropagation()}>
                 <div className="command-palette-input-wrapper">
-                    <Search className="command-palette-icon" size={20} />
+                    <FluentEmoji name="Search" size={20} className="command-palette-icon" />
                     <input
                         ref={inputRef}
                         className="command-palette-input"

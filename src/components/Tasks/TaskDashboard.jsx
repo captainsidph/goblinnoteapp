@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNotes } from '../../context/NoteContext';
-import { CheckSquare, Square, FileText, CheckCircle2, Eye, EyeOff, ArrowDownWideNarrow } from 'lucide-react';
+import FluentEmoji from '../FluentEmoji';
 import './TaskDashboard.css';
 
 const TaskDashboard = () => {
@@ -54,7 +54,7 @@ const TaskDashboard = () => {
     if (allTasks.length === 0) {
         return (
             <div className="task-dashboard-empty">
-                <CheckCircle2 size={64} className="empty-icon" />
+                <FluentEmoji name="CheckCircle" size={64} className="empty-icon" />
                 <h2>No Tasks Found</h2>
                 <p>Add tasks to your notes using <code>[ ]</code> or the checklist button.</p>
             </div>
@@ -79,7 +79,7 @@ const TaskDashboard = () => {
                         onClick={() => setHideCompleted(!hideCompleted)}
                         title={hideCompleted ? "Show Completed" : "Hide Completed"}
                     >
-                        {hideCompleted ? <EyeOff size={18} /> : <Eye size={18} />}
+                        {hideCompleted ? <FluentEmoji name="EyeOff" size={18} /> : <FluentEmoji name="Eye" size={18} />}
                     </button>
 
                     {/* Tag Filter */}
@@ -89,7 +89,6 @@ const TaskDashboard = () => {
                             value={filterTag}
                             onChange={(e) => setFilterTag(e.target.value)}
                             className="task-sort-select"
-                            style={{ marginRight: '8px' }}
                         >
                             <option value="all">All Tags</option>
                             {availableTags.map(tag => (
@@ -99,7 +98,7 @@ const TaskDashboard = () => {
                     </div>
 
                     <div className="sort-dropdown-wrapper">
-                        <ArrowDownWideNarrow size={18} className="sort-icon" />
+                        <FluentEmoji name="Sort" size={18} className="sort-icon" />
                         <select
                             value={sortOption}
                             onChange={(e) => setSortOption(e.target.value)}
@@ -129,9 +128,9 @@ const TaskDashboard = () => {
                                 onClick={() => toggleTask(task.noteId, task.index)}
                             >
                                 {task.checked ? (
-                                    <CheckSquare size={20} className="checkbox-icon checked" />
+                                    <FluentEmoji name="Check" size={20} className="checkbox-icon checked" />
                                 ) : (
-                                    <Square size={20} className="checkbox-icon" />
+                                    <FluentEmoji name="Square" size={20} className="checkbox-icon" />
                                 )}
                             </button>
                             <div className="task-content">
@@ -149,7 +148,7 @@ const TaskDashboard = () => {
                                         className="task-source-link"
                                         onClick={() => openNote(task.noteId)}
                                     >
-                                        <FileText size={12} />
+                                        <FluentEmoji name="FileText" size={12} />
                                         {task.noteTitle || 'Untitled Note'}
                                     </button>
                                     {task.tags && task.tags.length > 0 && (

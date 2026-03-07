@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNotes } from '../../context/NoteContext';
-import { X, Download, Upload, AlertTriangle, CloudUpload, Moon, Sun, Type, FileArchive, FileText } from 'lucide-react';
+import FluentEmoji from '../FluentEmoji';
 import './CreateModal.css'; // Reusing modal base styles
 import './SettingsModal.css';
 import ConflictResolutionModal from './ConflictResolutionModal';
@@ -188,7 +188,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
             <div className="modal-content" onClick={e => e.stopPropagation()} style={{ maxWidth: '600px', maxHeight: '85vh', overflowY: 'auto' }}>
                 <div className="modal-header">
                     <h2>Settings</h2>
-                    <button className="close-btn" onClick={onClose}><X size={18} /></button>
+                    <button className="close-btn" onClick={onClose}><FluentEmoji name="Clear" size={18} /></button>
                 </div>
 
                 <div className="modal-body">
@@ -202,14 +202,14 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                 onClick={handleExport}
                                 style={{ flex: '1', minWidth: '140px', display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center' }}
                             >
-                                <Download size={16} /> JSON Backup
+                                <FluentEmoji name="Download" size={16} /> JSON Backup
                             </button>
                             <button
                                 className="modal-btn"
                                 onClick={handleExportMarkdownZip}
                                 style={{ flex: '1', minWidth: '140px', display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center' }}
                             >
-                                <FileArchive size={16} /> Markdown ZIP
+                                <FluentEmoji name="Archive" size={16} /> Markdown ZIP
                             </button>
                         </div>
                     </div>
@@ -238,7 +238,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                         disabled={!importFile}
                                         style={{ minWidth: '100px', display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center' }}
                                     >
-                                        <Upload size={16} /> Import
+                                        <FluentEmoji name="Save" size={16} /> Import
                                     </button>
                                 </div>
                             </div>
@@ -337,7 +337,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                     disabled={isUploading}
                                     style={{ width: '100%', display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}
                                 >
-                                    <CloudUpload size={16} /> {isUploading ? 'Uploading...' : 'Upload New Backup'}
+                                    <FluentEmoji name="Cloud" size={16} /> {isUploading ? 'Uploading...' : 'Upload New Backup'}
                                 </button>
 
                                 <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '12px' }}>
