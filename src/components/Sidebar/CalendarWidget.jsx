@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useNotes } from '../../context/NoteContext';
-import FluentEmoji from '../FluentEmoji';
+import FluentEmoji from '../FluentEmoji.jsx';
 import './CalendarWidget.css';
 
 const CalendarWidget = () => {

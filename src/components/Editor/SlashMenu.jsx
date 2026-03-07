@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import {
     X
 } from 'lucide-react';
-import FluentEmoji from '../FluentEmoji';
+import FluentEmoji from '../FluentEmoji.jsx';
 import './SlashMenu.css';
 
 const COMMANDS = [

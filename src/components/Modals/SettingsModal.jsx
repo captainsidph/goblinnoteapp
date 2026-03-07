@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNotes } from '../../context/NoteContext';
-import FluentEmoji from '../FluentEmoji';
+import FluentEmoji from '../FluentEmoji.jsx';
 import './CreateModal.css'; // Reusing modal base styles
 import './SettingsModal.css';
 import ConflictResolutionModal from './ConflictResolutionModal';

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import FluentEmoji from '../FluentEmoji';
+import FluentEmoji from '../FluentEmoji.jsx';
 import { useNotes } from '../../context/NoteContext';
 import './LinkNoteModal.css';
 

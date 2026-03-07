@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FluentEmoji from '../FluentEmoji';
+import FluentEmoji from '../FluentEmoji.jsx';
 import './CreateModal.css';
 
 const CreateModal = ({ type, isOpen, onClose, onConfirm, parents = [] }) => {

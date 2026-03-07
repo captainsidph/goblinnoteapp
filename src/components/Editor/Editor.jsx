@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNotes } from '../../context/NoteContext';
 import { Folder, Tag, X, Plus, Trash2, RotateCcw, Trash, LayoutTemplate, Columns, Maximize, Monitor, AlignJustify, Link, PanelBottom, Eye, EyeOff, Type, Download } from 'lucide-react';
 import TabBar from './TabBar';
-import FluentEmoji from '../FluentEmoji';
+import FluentEmoji from '../FluentEmoji.jsx';
 import './Editor.css';
 import LinkNoteModal from '../Modals/LinkNoteModal';
 import ReactMarkdown from 'react-markdown';

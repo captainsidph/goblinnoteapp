@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNotes } from '../../context/NoteContext';
 import { Sun, Moon } from 'lucide-react';
-import FluentEmoji from '../FluentEmoji';
+import FluentEmoji from '../FluentEmoji.jsx';
 import './CommandPalette.css';
 
 const CommandPalette = () => {

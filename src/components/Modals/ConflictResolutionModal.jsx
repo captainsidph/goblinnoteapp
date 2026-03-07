@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNotes } from '../../context/NoteContext';
-import FluentEmoji from '../FluentEmoji';
+import FluentEmoji from '../FluentEmoji.jsx';
 import './CreateModal.css';
 import './SettingsModal.css';
 

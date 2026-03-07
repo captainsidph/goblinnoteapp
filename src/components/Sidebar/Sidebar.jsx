@@ -3,7 +3,7 @@ import { useNotes } from '../../context/NoteContext';
 import CreateModal from '../Modals/CreateModal';
 import SettingsModal from '../Modals/SettingsModal';
 import CalendarWidget from './CalendarWidget';
-import FluentEmoji from '../FluentEmoji';
+import FluentEmoji from '../FluentEmoji.jsx';
 import './Sidebar.css';
 
 const SidebarItem = ({ item, type, level = 0, onSelect, activeId, onToggleExpand, expandedIds, onDelete, onNoteDrop }) => {
