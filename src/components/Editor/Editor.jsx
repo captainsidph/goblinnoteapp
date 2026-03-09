@@ -641,7 +641,7 @@ const Editor = ({ onBack, isMobile }) => {
                         </ReactMarkdown>
                     </div>
                 ) : (
-                    <div className={`editor-textarea-wrapper ${noteWidth === 'optimum' ? 'optimum-width' : 'full-width'}`} style={{ height: '100%' }}>
+                    <div className={`editor-textarea-wrapper ${noteWidth === 'optimum' ? 'optimum-width' : 'full-width'}`}>
                         <textarea
                             ref={textareaRef}
                             className="editor-textarea"
