@@ -1,8 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNotes } from '../../context/NoteContext';
-import { Folder, Tag, X, Plus, Trash2, RotateCcw, Trash, LayoutTemplate, Columns, Maximize, Monitor, AlignJustify, Link, PanelBottom, Eye, EyeOff, Type, Download } from 'lucide-react';
+import { 
+    Folder, 
+    Tag, 
+    X, 
+    Plus, 
+    Trash2, 
+    RotateCcw, 
+    Trash, 
+    LayoutTemplate, 
+    Columns, 
+    Maximize, 
+    Monitor, 
+    AlignJustify, 
+    Link, 
+    PanelBottom, 
+    Eye, 
+    EyeOff, 
+    Type, 
+    Download,
+    ChevronLeft,
+    Layout,
+    Maximize2,
+    RotateCw,
+    Search
+} from 'lucide-react';
 import TabBar from './TabBar';
-import FluentEmoji from '../FluentEmoji.jsx';
 import './Editor.css';
 import LinkNoteModal from '../Modals/LinkNoteModal';
 import ReactMarkdown from 'react-markdown';
@@ -274,7 +297,7 @@ const Editor = ({ onBack, isMobile }) => {
                 {isMobile && onBack && (
                      <div style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 100 }}>
                         <button className="mobile-menu-btn" onClick={onBack}>
-                            <FluentEmoji name="ChevronLeft" size={24} />
+                            <ChevronLeft size={24} />
                         </button>
                     </div>
                 )}
@@ -316,7 +339,7 @@ const Editor = ({ onBack, isMobile }) => {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '100%' }}>
                     {isMobile && onBack && (
                         <button className="mobile-menu-btn" onClick={onBack}>
-                            <FluentEmoji name="ChevronLeft" size={24} />
+                            <ChevronLeft size={24} />
                         </button>
                     )}
                     <input
@@ -336,7 +359,7 @@ const Editor = ({ onBack, isMobile }) => {
                     <div className="meta-divider"></div>
 
                     <div className="meta-item folder-select-wrapper">
-                        <FluentEmoji name="Folder" size={14} className="meta-icon" />
+                        <Folder size={14} className="meta-icon" />
                         <select
                             value={selectedNote.folderId}
                             onChange={handleFolderChange}
@@ -356,10 +379,10 @@ const Editor = ({ onBack, isMobile }) => {
                         <div className="tags-list">
                             {selectedNote.tags.map(tag => (
                                 <span key={tag} className="tag-pill">
-                                    <FluentEmoji name="Tag" size={10} className="tag-icon" />
+                                    <Tag size={10} className="tag-icon" />
                                     {tag}
                                     <button onClick={() => removeTag(tag)} className="remove-tag-btn">
-                                        <FluentEmoji name="Clear" size={10} />
+                                        <X size={10} />
                                     </button>
                                 </span>
                             ))}
@@ -383,21 +406,21 @@ const Editor = ({ onBack, isMobile }) => {
                         onClick={() => setViewMode('default')}
                         title="Default View"
                     >
-                        <FluentEmoji name="Layout" size={18} />
+                        <Layout size={18} />
                     </button>
                     <button
                         className={`action-btn ${viewMode === 'list' ? 'active' : ''}`}
                         onClick={() => setViewMode('list')}
                         title="List View"
                     >
-                        <FluentEmoji name="Columns" size={18} />
+                        <Columns size={18} />
                     </button>
                     <button
                         className={`action-btn ${viewMode === 'focus' ? 'active' : ''}`}
                         onClick={() => setViewMode('focus')}
                         title="Focus Mode"
                     >
-                        <FluentEmoji name="Maximize" size={18} />
+                        <Maximize2 size={18} />
                     </button>
                 </div>
                 <div className="view-toggles" style={{ marginLeft: '8px' }}>
@@ -406,14 +429,14 @@ const Editor = ({ onBack, isMobile }) => {
                         onClick={() => setNoteWidth('optimum')}
                         title="Optimum Width"
                     >
-                        <FluentEmoji name="Text" size={18} />
+                        <Type size={18} />
                     </button>
                     <button
                         className={`action-btn ${noteWidth === 'full' ? 'active' : ''}`}
                         onClick={() => setNoteWidth('full')}
                         title="Full Width"
                     >
-                        <FluentEmoji name="Monitor" size={18} />
+                        <Monitor size={18} />
                     </button>
                 </div>
 
@@ -423,7 +446,7 @@ const Editor = ({ onBack, isMobile }) => {
                         onClick={() => setShowFontSizeMenu(!showFontSizeMenu)}
                         title="Font Size"
                     >
-                        <FluentEmoji name="Type" size={18} />
+                        <Type size={18} />
                     </button>
                     {showFontSizeMenu && (
                         <div className="font-size-dropdown" style={{ display: 'flex', flexDirection: 'row', minWidth: 'auto', padding: '4px', top: '100%', left: '0' }}>
@@ -448,21 +471,21 @@ const Editor = ({ onBack, isMobile }) => {
                         onClick={() => setIsLinkModalOpen(true)}
                         title="Link Note"
                     >
-                        <FluentEmoji name="Link" size={18} />
+                        <Link size={18} />
                     </button>
                     <button
                         className={`action-btn ${showFooter ? 'active' : ''}`}
                         onClick={() => setShowFooter(!showFooter)}
                         title="Toggle Linked Notes Footer"
                     >
-                        <FluentEmoji name="Footer" size={18} />
+                        <PanelBottom size={18} />
                     </button>
                     <button
                         className={`action-btn ${isPreviewMode ? 'active' : ''}`}
                         onClick={() => setIsPreviewMode(!isPreviewMode)}
                         title={isPreviewMode ? "Edit Mode" : "Preview Mode"}
                     >
-                        <FluentEmoji name={isPreviewMode ? 'EyeOff' : 'Eye'} size={18} />
+                        {isPreviewMode ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
                 </div>
 
@@ -472,7 +495,7 @@ const Editor = ({ onBack, isMobile }) => {
                         onClick={() => setShowExportMenu(!showExportMenu)}
                         title="Export Note"
                     >
-                        <FluentEmoji name="Download" size={18} />
+                        <Download size={18} />
                     </button>
                     {showExportMenu && (
                         <div className="font-size-dropdown" style={{
@@ -517,14 +540,14 @@ const Editor = ({ onBack, isMobile }) => {
                             onClick={() => restoreNote(selectedNote.id)}
                             title="Restore Note"
                         >
-                            <FluentEmoji name="Rotate" size={18} />
+                            <RotateCcw size={18} />
                         </button>
                         <button
                             className="action-btn delete-forever-btn"
                             onClick={() => permanentlyDeleteNote(selectedNote.id)}
                             title="Delete Forever"
                         >
-                            <FluentEmoji name="Trash" size={18} />
+                            <Trash2 size={18} />
                         </button>
                     </>
                 ) : (
@@ -534,7 +557,7 @@ const Editor = ({ onBack, isMobile }) => {
                         title="Move to Trash"
                         rel="trash"
                     >
-                        <FluentEmoji name="Trash" size={18} />
+                        <Trash2 size={18} />
                     </button>
                 )}
             </div>

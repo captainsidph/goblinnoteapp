@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { useNotes } from '../../context/NoteContext';
-import FluentEmoji from '../FluentEmoji.jsx';
+import { 
+    CheckCircle, 
+    EyeOff, 
+    Eye, 
+    ArrowUpDown, 
+    Check, 
+    Square, 
+    FileText 
+} from 'lucide-react';
 import './TaskDashboard.css';
 
 const TaskDashboard = () => {
@@ -54,7 +62,7 @@ const TaskDashboard = () => {
     if (allTasks.length === 0) {
         return (
             <div className="task-dashboard-empty">
-                <FluentEmoji name="CheckCircle" size={64} className="empty-icon" />
+                <CheckCircle size={64} className="empty-icon" />
                 <h2>No Tasks Found</h2>
                 <p>Add tasks to your notes using <code>[ ]</code> or the checklist button.</p>
             </div>
@@ -79,7 +87,7 @@ const TaskDashboard = () => {
                         onClick={() => setHideCompleted(!hideCompleted)}
                         title={hideCompleted ? "Show Completed" : "Hide Completed"}
                     >
-                        {hideCompleted ? <FluentEmoji name="EyeOff" size={18} /> : <FluentEmoji name="Eye" size={18} />}
+                        {hideCompleted ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
 
                     {/* Tag Filter */}
@@ -98,7 +106,7 @@ const TaskDashboard = () => {
                     </div>
 
                     <div className="sort-dropdown-wrapper">
-                        <FluentEmoji name="Sort" size={18} className="sort-icon" />
+                        <ArrowUpDown size={18} className="sort-icon" />
                         <select
                             value={sortOption}
                             onChange={(e) => setSortOption(e.target.value)}
@@ -128,9 +136,9 @@ const TaskDashboard = () => {
                                 onClick={() => toggleTask(task.noteId, task.index)}
                             >
                                 {task.checked ? (
-                                    <FluentEmoji name="Check" size={20} className="checkbox-icon checked" />
+                                    <Check size={20} className="checkbox-icon checked" />
                                 ) : (
-                                    <FluentEmoji name="Square" size={20} className="checkbox-icon" />
+                                    <Square size={20} className="checkbox-icon" />
                                 )}
                             </button>
                             <div className="task-content">
@@ -148,7 +156,7 @@ const TaskDashboard = () => {
                                         className="task-source-link"
                                         onClick={() => openNote(task.noteId)}
                                     >
-                                        <FluentEmoji name="FileText" size={12} />
+                                        <FileText size={12} />
                                         {task.noteTitle || 'Untitled Note'}
                                     </button>
                                     {task.tags && task.tags.length > 0 && (

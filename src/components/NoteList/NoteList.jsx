@@ -1,6 +1,12 @@
 import React from 'react';
 import { useNotes } from '../../context/NoteContext';
-import FluentEmoji from '../FluentEmoji.jsx';
+import { 
+    AlignLeft, 
+    Trash2, 
+    Search, 
+    ArrowUpDown, 
+    Star 
+} from 'lucide-react';
 import './NoteList.css';
 
 const NoteList = ({ onMenuClick, isMobile }) => {
@@ -25,12 +31,11 @@ const NoteList = ({ onMenuClick, isMobile }) => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                         {isMobile && onMenuClick && (
                             <button className="mobile-menu-btn" onClick={onMenuClick}>
-                                <FluentEmoji name="AlignLeft" size={24} />
+                                <AlignLeft size={24} />
                             </button>
                         )}
                         <h2>{getHeaderTitle()}</h2>
                     </div>
-                    {filter.type === 'trash' && filteredNotes.length > 0 && (
                         <button
                             className="empty-trash-btn"
                             onClick={emptyTrash}
@@ -48,10 +53,9 @@ const NoteList = ({ onMenuClick, isMobile }) => {
                                 fontWeight: '500'
                             }}
                         >
-                            <FluentEmoji name="Trash" size={14} />
+                            <Trash2 size={14} />
                             Empty
                         </button>
-                    )}
                 </div>
                 <span className="note-count">{filteredNotes.length} notes</span>
             </div>
@@ -59,7 +63,7 @@ const NoteList = ({ onMenuClick, isMobile }) => {
             <div className="search-bar-container">
                 <div className="search-bar">
                     <div className="nav-icon-wrapper" style={{ margin: 0, width: 20, height: 20 }}>
-                        <FluentEmoji name="Search" size={16} />
+                        <Search size={16} />
                     </div>
                     <input
                         type="text"
@@ -70,7 +74,7 @@ const NoteList = ({ onMenuClick, isMobile }) => {
                 </div>
                 <div className="sort-wrapper">
                     <div className="nav-icon-wrapper" style={{ margin: 0, width: 20, height: 20 }}>
-                        <FluentEmoji name="Sort" size={16} />
+                        <ArrowUpDown size={16} />
                     </div>
                     <select
                         value={sortOption}
@@ -122,7 +126,7 @@ const NoteList = ({ onMenuClick, isMobile }) => {
                                         }}
                                         title={note.isPinned ? "Unpin note" : "Pin note"}
                                     >
-                                        <FluentEmoji name="Star" size={14} className={`skeu-icon ${note.isPinned ? 'active' : ''}`} />
+                                        <Star size={14} className={`skeu-icon ${note.isPinned ? 'active' : ''}`} />
                                     </button>
                                 )}
                             </div>

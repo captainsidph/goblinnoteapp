@@ -37,6 +37,7 @@
   --pane-inner-glow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
   --icon-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   --btn-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+  --hover-bg: rgba(0, 0, 0, 0.05);
 }
 
 /* Dark Mode Support (Optional for now, but good to have vars ready) */

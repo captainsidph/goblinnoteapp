@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import FluentEmoji from '../FluentEmoji.jsx';
+import { X } from 'lucide-react';
 import { useNotes } from '../../context/NoteContext';
 import './LinkNoteModal.css';
 
@@ -26,7 +26,7 @@ const LinkNoteModal = ({ isOpen, onClose, onSelectNote }) => {
                 <div className="link-note-modal-header">
                     <h3 className="link-note-modal-title">Link to a Note</h3>
                     <button className="close-modal-btn" onClick={onClose}>
-                        <FluentEmoji name="Clear" size={20} />
+                        <X size={20} />
                     </button>
                 </div>
 

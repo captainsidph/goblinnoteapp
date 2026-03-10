@@ -1,7 +1,7 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { useNotes } from '../../context/NoteContext';
-import FluentEmoji from '../FluentEmoji.jsx';
+import { Search, Trash2, Folder, Plus } from 'lucide-react';
 import './Modal.css';
 
 const EmptyStateModal = () => {
@@ -33,7 +33,7 @@ const EmptyStateModal = () => {
     const getContent = () => {
         if (searchQuery) {
             return {
-                icon: <FluentEmoji name="Search" size={40} className="modal-icon" />,
+                icon: <Search size={40} className="modal-icon" />,
                 title: 'No Notes Found',
                 description: `No notes match "${searchQuery}"`,
                 showCreate: false,
@@ -43,7 +43,7 @@ const EmptyStateModal = () => {
 
         if (filter.type === 'trash') {
             return {
-                icon: <FluentEmoji name="Trash" size={40} className="modal-icon" />,
+                icon: <Trash2 size={40} className="modal-icon" />,
                 title: 'Trash is Empty',
                 description: 'There are no notes in the trash. Deleted notes will appear here.',
                 showCreate: false
@@ -52,7 +52,7 @@ const EmptyStateModal = () => {
 
         if (filter.type === 'folder') {
             return {
-                icon: <FluentEmoji name="Folder" size={40} className="modal-icon" />,
+                icon: <Folder size={40} className="modal-icon" />,
                 title: 'Folder is Empty',
                 description: 'This folder currently has no notes. Create a new one to get started.',
                 showCreate: true
@@ -60,7 +60,7 @@ const EmptyStateModal = () => {
         }
 
         return {
-            icon: <FluentEmoji name="Plus" size={40} className="modal-icon" />,
+            icon: <Plus size={40} className="modal-icon" />,
             title: 'No Notes Found',
             description: 'You don\'t have any notes yet. Create your first note to get started!',
             showCreate: true
@@ -81,7 +81,7 @@ const EmptyStateModal = () => {
                 <div className="modal-actions">
                     {content.showCreate && (
                         <button className="modal-btn primary" onClick={handleCreateNote}>
-                            <FluentEmoji name="Plus" size={20} />
+                            <Plus size={20} />
                             Create New Note
                         </button>
                     )}

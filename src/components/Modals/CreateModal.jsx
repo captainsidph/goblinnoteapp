@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import FluentEmoji from '../FluentEmoji.jsx';
+import { X } from 'lucide-react';
 import './CreateModal.css';
 
 const CreateModal = ({ type, isOpen, onClose, onConfirm, parents = [] }) => {
@@ -21,9 +21,11 @@ const CreateModal = ({ type, isOpen, onClose, onConfirm, parents = [] }) => {
     return createPortal(
         <div className="modal-overlay">
             <div className="modal-content">
-                <div className="modal-header">
-                    <h2>Create New {type === 'folder' ? 'Folder' : 'Tag'}</h2>
-                    <button className="close-btn" onClick={onClose}><FluentEmoji name="Clear" size={20} /></button>
+                <div className="link-note-modal-header">
+                    <h3 className="link-note-modal-title">Link to a Note</h3>
+                    <button className="close-modal-btn" onClick={onClose}>
+                        <X size={20} />
+                    </button>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">

@@ -1,8 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-    X
+    X,
+    Heading1,
+    Heading2,
+    Heading3,
+    List,
+    ListOrdered,
+    Check,
+    Quote,
+    Code,
+    Minus,
+    Link
 } from 'lucide-react';
-import FluentEmoji from '../FluentEmoji.jsx';
 import './SlashMenu.css';
 
 const COMMANDS = [
@@ -10,56 +19,56 @@ const COMMANDS = [
         id: 'heading1',
         title: 'Heading 1',
         description: 'Big section heading',
-        icon: <FluentEmoji name="H1" size={18} />,
+        icon: <Heading1 size={18} />,
         syntax: '# '
     },
     {
         id: 'heading2',
         title: 'Heading 2',
         description: 'Medium section heading',
-        icon: <FluentEmoji name="H2" size={18} />,
+        icon: <Heading2 size={18} />,
         syntax: '## '
     },
     {
         id: 'heading3',
         title: 'Heading 3',
         description: 'Small sub-heading',
-        icon: <FluentEmoji name="H3" size={18} />,
+        icon: <Heading3 size={18} />,
         syntax: '### '
     },
     {
         id: 'bullet-list',
         title: 'Bullet List',
         description: 'Create a simple bulleted list',
-        icon: <FluentEmoji name="List" size={18} />,
+        icon: <List size={18} />,
         syntax: '- '
     },
     {
         id: 'numbered-list',
         title: 'Numbered List',
         description: 'Create a list with numbering',
-        icon: <FluentEmoji name="OrderedList" size={18} />,
+        icon: <ListOrdered size={18} />,
         syntax: '1. '
     },
     {
         id: 'checkbox',
         title: 'To-Do List',
         description: 'Track tasks with a to-do list',
-        icon: <FluentEmoji name="Check" size={18} />,
+        icon: <Check size={18} />,
         syntax: '- [ ] '
     },
     {
         id: 'blockquote',
         title: 'Quote',
         description: 'Capture a quote',
-        icon: <FluentEmoji name="Quote" size={18} />,
+        icon: <Quote size={18} />,
         syntax: '> '
     },
     {
         id: 'code-block',
         title: 'Code Block',
         description: 'Capture a code snippet',
-        icon: <FluentEmoji name="Code" size={18} />,
+        icon: <Code size={18} />,
         syntax: '```\n\n```',
         cursorOffset: 4 // Move cursor inside the block
     },
@@ -67,14 +76,14 @@ const COMMANDS = [
         id: 'divider',
         title: 'Divider',
         description: 'Visually divide blocks',
-        icon: <FluentEmoji name="Minus" size={18} />,
+        icon: <Minus size={18} />,
         syntax: '-----'
     },
     {
         id: 'link-note',
         title: 'Link Note',
         description: 'Link to another note',
-        icon: <FluentEmoji name="Link" size={18} />,
+        icon: <Link size={18} />,
         syntax: '' // Special handling in parent
     }
 ];

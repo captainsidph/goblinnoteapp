@@ -3,7 +3,21 @@ import { useNotes } from '../../context/NoteContext';
 import CreateModal from '../Modals/CreateModal';
 import SettingsModal from '../Modals/SettingsModal';
 import CalendarWidget from './CalendarWidget';
-import FluentEmoji from '../FluentEmoji.jsx';
+import { 
+    ChevronDown, 
+    ChevronRight, 
+    Folder, 
+    Tag, 
+    Trash2, 
+    Plus, 
+    Star, 
+    FileText, 
+    Calendar, 
+    Check, 
+    Settings, 
+    Moon, 
+    Sun 
+} from 'lucide-react';
 import './Sidebar.css';
 
 const SidebarItem = ({ item, type, level = 0, onSelect, activeId, onToggleExpand, expandedIds, onDelete, onNoteDrop }) => {
@@ -56,10 +70,10 @@ const SidebarItem = ({ item, type, level = 0, onSelect, activeId, onToggleExpand
                     }}
                     style={{ visibility: hasChildren ? 'visible' : 'hidden', marginRight: '4px' }}
                 >
-                    {isExpanded ? <FluentEmoji name="ChevronDown" size={14} className="skeu-icon" /> : <FluentEmoji name="ChevronRight" size={14} className="skeu-icon" />}
+                    {isExpanded ? <ChevronDown size={14} className="skeu-icon" /> : <ChevronRight size={14} className="skeu-icon" />}
                 </div>
                 <div className="nav-icon-wrapper">
-                    <FluentEmoji name={isTag ? 'Tag' : 'Folder'} size={20} />
+                    {isTag ? <Tag size={20} /> : <Folder size={20} />}
                 </div>
                 <span className="item-name" style={{ flex: 1 }}>{item.name}</span>
 
@@ -73,7 +87,7 @@ const SidebarItem = ({ item, type, level = 0, onSelect, activeId, onToggleExpand
                     }}
                     title={`Delete ${type}`}
                 >
-                    <FluentEmoji name="Trash" size={14} />
+                    <Trash2 size={14} />
                 </div>
             </div>
             {hasChildren && isExpanded && (
@@ -123,7 +137,9 @@ const Sidebar = ({ onSelect }) => {
     const [modal, setModal] = useState({ isOpen: false, type: null });
     const [expandedIds, setExpandedIds] = useState([]);
     const [showCalendar, setShowCalendar] = useState(false);
-    const [showThemeMenu, setShowThemeMenu] = useState(false); // New state for theme menu
+    const [showThemeMenu, setShowThemeMenu] = useState(false);
+    const [isFoldersExpanded, setIsFoldersExpanded] = useState(true);
+    const [isTagsExpanded, setIsTagsExpanded] = useState(true);
 
     const themes = [
         { id: 'light', name: 'Light' },
@@ -224,7 +240,7 @@ const Sidebar = ({ onSelect }) => {
                         <span className="username">User</span>
                     </div>
                     <button className="new-note-btn" onClick={addNote}>
-                        <FluentEmoji name="Plus" size={18} />
+                        <Plus size={18} />
                         <span>New Note</span>
                     </button>
                 </div>
@@ -239,7 +255,7 @@ const Sidebar = ({ onSelect }) => {
                         }}
                     >
                         <div className="nav-icon-wrapper">
-                            <FluentEmoji name="Star" size={20} />
+                            <Star size={20} />
                         </div>
                         <span>Favorites</span>
                     </div>
@@ -252,7 +268,7 @@ const Sidebar = ({ onSelect }) => {
                             if (onSelect) onSelect();
                         }}
                     >
-                        <FluentEmoji name="Memo" size={20} />
+                        <FileText size={20} />
                         <span>All Notes</span>
                     </div>
 
@@ -261,7 +277,7 @@ const Sidebar = ({ onSelect }) => {
                         className={`nav-item ${showCalendar ? 'active' : ''}`}
                         onClick={() => setShowCalendar(!showCalendar)}
                     >
-                        <FluentEmoji name="Calendar" size={20} />
+                        <Calendar size={20} />
                         <span>Calendar</span>
                     </div>
 
@@ -273,68 +289,94 @@ const Sidebar = ({ onSelect }) => {
                     )}
 
                     <div className="nav-section">
-                        <div className="section-header">
-                            <span className="section-title">FOLDERS</span>
-                            <FluentEmoji
-                                name="Plus"
-                                size={14}
-                                className="add-icon skeu-btn"
-                                onClick={() => openModal('folder')}
-                            />
-                        </div>
-                        <div className="scrollable-section">
-                            {folderTree.map(folder => (
-                                <SidebarItem
-                                    key={folder.id}
-                                    item={folder}
-                                    type="folder"
-                                    activeId={filter.type === 'folder' ? filter.id : null}
-                                    onSelect={(item) => {
-                                        setFilter({ type: 'folder', id: item.id });
-                                        setActivePage('notes');
-                                        if (onSelect) onSelect();
-                                    }}
-                                    onToggleExpand={toggleExpand}
-                                    expandedIds={expandedIds}
-                                    onDelete={deleteFolder}
-                                    onNoteDrop={handleNoteDrop}
-                                />
-                            ))}
+                        <button 
+                            className="section-header collapsible" 
+                            onClick={() => setIsFoldersExpanded(!isFoldersExpanded)} 
+                            title={isFoldersExpanded ? "Collapse Folders" : "Expand Folders"}
+                            aria-expanded={isFoldersExpanded}
+                        >
+                            <div className="section-header-left">
+                                <div className="section-toggle-icon-wrapper">
+                                    {isFoldersExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                                </div>
+                                <span className="section-title">FOLDERS</span>
+                            </div>
+                            <div
+                                className="add-icon-wrapper"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    openModal('folder');
+                                }}
+                            >
+                                <Plus size={14} className="skeu-btn" />
+                            </div>
+                        </button>
+                        <div className={`scrollable-section ${!isFoldersExpanded ? 'collapsed' : ''}`}>
+                            <div className="scrollable-content-inner">
+                                {folderTree.map(folder => (
+                                    <SidebarItem
+                                        key={folder.id}
+                                        item={folder}
+                                        type="folder"
+                                        activeId={filter.type === 'folder' ? filter.id : null}
+                                        onSelect={(item) => {
+                                            setFilter({ type: 'folder', id: item.id });
+                                            setActivePage('notes');
+                                            if (onSelect) onSelect();
+                                        }}
+                                        onToggleExpand={toggleExpand}
+                                        expandedIds={expandedIds}
+                                        onDelete={deleteFolder}
+                                        onNoteDrop={handleNoteDrop}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </div>
 
                     <div className="nav-section">
-                        <div className="section-header">
-                            <span className="section-title">TAGS</span>
-                            <FluentEmoji
-                                name="Plus"
-                                size={14}
-                                className="add-icon skeu-btn"
-                                onClick={() => openModal('tag')}
-                            />
-                        </div>
-                        <div className="scrollable-section">
-                            {tagTree.map(tag => (
-                                <SidebarItem
-                                    key={tag.id}
-                                    item={tag}
-                                    type="tag"
-                                    activeId={filter.type === 'tag' ? filter.id : null}
-                                    // Note: Filter state uses tag NAME for legacy support, but we might want to switch to ID later.
-                                    // For now, let's stick to NAME matching or update Context to support ID filtering for tags.
-                                    // Context filter: `n.tags.includes(filter.id)` where filter.id is name.
-                                    // So we pass `tag.name` as ID.
-                                    onSelect={(item) => {
-                                        setFilter({ type: 'tag', id: item.name });
-                                        setActivePage('notes');
-                                        if (onSelect) onSelect();
-                                    }}
-                                    onToggleExpand={toggleExpand}
-                                    expandedIds={expandedIds}
-                                    onDelete={deleteTag}
-                                    onNoteDrop={handleNoteDrop}
-                                />
-                            ))}
+                        <button 
+                            className="section-header collapsible" 
+                            onClick={() => setIsTagsExpanded(!isTagsExpanded)} 
+                            title={isTagsExpanded ? "Collapse Tags" : "Expand Tags"}
+                            aria-expanded={isTagsExpanded}
+                        >
+                            <div className="section-header-left">
+                                <div className="section-toggle-icon-wrapper">
+                                    {isTagsExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                                </div>
+                                <span className="section-title">TAGS</span>
+                            </div>
+                            <div
+                                className="add-icon-wrapper"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    openModal('tag');
+                                }}
+                            >
+                                <Plus size={14} className="skeu-btn" />
+                            </div>
+                        </button>
+                        <div className={`scrollable-section ${!isTagsExpanded ? 'collapsed' : ''}`}>
+                            <div className="scrollable-content-inner">
+                                {tagTree.map(tag => (
+                                    <SidebarItem
+                                        key={tag.id}
+                                        item={tag}
+                                        type="tag"
+                                        activeId={filter.type === 'tag' ? filter.id : null}
+                                        onSelect={(item) => {
+                                            setFilter({ type: 'tag', id: item.name });
+                                            setActivePage('notes');
+                                            if (onSelect) onSelect();
+                                        }}
+                                        onToggleExpand={toggleExpand}
+                                        expandedIds={expandedIds}
+                                        onDelete={deleteTag}
+                                        onNoteDrop={handleNoteDrop}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </div>
 
@@ -346,7 +388,7 @@ const Sidebar = ({ onSelect }) => {
                             if (onSelect) onSelect();
                         }}
                     >
-                        <FluentEmoji name="Trash" size={20} />
+                        <Trash2 size={20} />
                         <span>Trash</span>
                     </div>
 
@@ -359,7 +401,7 @@ const Sidebar = ({ onSelect }) => {
                             if (onSelect) onSelect();
                         }}
                     >
-                        <FluentEmoji name="Check" size={20} />
+                        <Check size={20} />
                         <span>Tasks</span>
                     </div>
                 </nav>
@@ -369,12 +411,12 @@ const Sidebar = ({ onSelect }) => {
                         className="nav-item"
                         onClick={() => setIsSettingsOpen(true)}
                     >
-                        <FluentEmoji name="Gear" size={20} />
+                        <Settings size={20} />
                         <span>Settings</span>
                     </div>
                     <div className="nav-item theme-toggle" onClick={toggleThemeMenu} title="Select Theme" style={{ position: 'relative' }}>
                         <div className="nav-icon-wrapper">
-                            <FluentEmoji name={theme === 'dark' || theme === 'nord' || theme === 'gruvbox' ? 'Moon' : 'Sun'} size={20} />
+                            {theme === 'dark' || theme === 'nord' || theme === 'gruvbox' ? <Moon size={20} /> : <Sun size={20} />}
                         </div>
                         <span>Theme</span>
 

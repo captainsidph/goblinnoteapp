@@ -112,6 +112,80 @@
     color: var(--text-secondary);
 }
 
+.section-header.collapsible {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 6px 8px;
+    margin: 0 0 var(--spacing-xs) 0;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section-header.collapsible:hover {
+    background-color: var(--hover-bg);
+}
+
+.section-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    pointer-events: none; /* Let the button handle clicks */
+}
+
+.section-toggle-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    color: var(--text-secondary);
+    transition: transform 0.2s ease;
+}
+
+.section-header.collapsible:hover .section-toggle-icon-wrapper {
+    color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.add-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    z-index: 2;
+}
+
+.add-icon-wrapper:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.scrollable-section {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    overflow: hidden;
+    opacity: 1;
+}
+
+.scrollable-section.collapsed {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.scrollable-content-inner {
+    min-height: 0;
+}
+
 .add-icon {
     cursor: pointer;
     opacity: 0;
