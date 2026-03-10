@@ -1,29 +1,30 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNotes } from '../../context/NoteContext';
-import { 
-    Folder, 
-    Tag, 
-    X, 
-    Plus, 
-    Trash2, 
-    RotateCcw, 
-    Trash, 
-    LayoutTemplate, 
-    Columns, 
-    Maximize, 
-    Monitor, 
-    AlignJustify, 
-    Link, 
-    PanelBottom, 
-    Eye, 
-    EyeOff, 
-    Type, 
+import {
+    Folder,
+    Tag,
+    X,
+    Plus,
+    Trash2,
+    RotateCcw,
+    Trash,
+    LayoutTemplate,
+    Columns,
+    Maximize,
+    Monitor,
+    AlignJustify,
+    Link,
+    PanelBottom,
+    Eye,
+    EyeOff,
+    Type,
     Download,
     ChevronLeft,
     Layout,
     Maximize2,
     RotateCw,
-    Search
+    Search,
+    Star
 } from 'lucide-react';
 import TabBar from './TabBar';
 import './Editor.css';
@@ -35,7 +36,7 @@ import { getCaretCoordinates } from '../../utils/caretCoordinates';
 import { exportNoteAsMarkdown, exportNoteToPDF } from '../../utils/exportUtils';
 
 const Editor = ({ onBack, isMobile }) => {
-    const { selectedNote, updateNote, folders, deleteNote, restoreNote, permanentlyDeleteNote, filteredNotes, filter, addNote, viewMode, setViewMode, noteWidth, setNoteWidth, setSelectedNoteId, notes, tags, addTag, saveImageToDb, getImageFromDb, fontSize: fontSizeContext, setFontSize } = useNotes();
+    const { selectedNote, updateNote, folders, deleteNote, restoreNote, permanentlyDeleteNote, filteredNotes, filter, addNote, viewMode, setViewMode, noteWidth, setNoteWidth, setSelectedNoteId, notes, tags, addTag, saveImageToDb, getImageFromDb, fontSize: fontSizeContext, setFontSize, togglePin } = useNotes();
     const [tagInput, setTagInput] = useState('');
     const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
     const [showFooter, setShowFooter] = useState(true);
@@ -295,7 +296,7 @@ const Editor = ({ onBack, isMobile }) => {
         return (
             <div className="editor-empty">
                 {isMobile && onBack && (
-                     <div style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 100 }}>
+                    <div style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 100 }}>
                         <button className="mobile-menu-btn" onClick={onBack}>
                             <ChevronLeft size={24} />
                         </button>
@@ -529,6 +530,16 @@ const Editor = ({ onBack, isMobile }) => {
                             </div>
                         </div>
                     )}
+                </div>
+
+                <div style={{ marginLeft: '8px', borderLeft: '1px solid var(--border-color)', paddingLeft: '8px', display: 'flex', gap: '4px' }}>
+                    <button
+                        className={`action-btn pin-toolbar-btn ${selectedNote.isPinned ? 'active' : ''}`}
+                        onClick={() => togglePin(selectedNote.id)}
+                        title={selectedNote.isPinned ? "Unpin Note" : "Pin Note"}
+                    >
+                        <Star size={18} fill={selectedNote.isPinned ? "currentColor" : "none"} />
+                    </button>
                 </div>
 
                 <div className="toolbar-spacer"></div>

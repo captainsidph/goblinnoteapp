@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNotes } from '../../context/NoteContext';
-import { 
-    AlignLeft, 
-    Trash2, 
-    Search, 
-    ArrowUpDown, 
-    Star 
+import {
+    AlignLeft,
+    Trash2,
+    Search,
+    ArrowUpDown,
+    Star
 } from 'lucide-react';
 import './NoteList.css';
 
@@ -36,26 +36,26 @@ const NoteList = ({ onMenuClick, isMobile }) => {
                         )}
                         <h2>{getHeaderTitle()}</h2>
                     </div>
-                        <button
-                            className="empty-trash-btn"
-                            onClick={emptyTrash}
-                            title="Empty Trash"
-                            style={{
-                                background: 'transparent',
-                                border: 'none',
-                                cursor: 'pointer',
-                                color: 'var(--danger-color)',
-                                padding: '4px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '4px',
-                                fontSize: '0.8rem',
-                                fontWeight: '500'
-                            }}
-                        >
-                            <Trash2 size={14} />
-                            Empty
-                        </button>
+                    <button
+                        className="empty-trash-btn"
+                        onClick={emptyTrash}
+                        title="Empty Trash"
+                        style={{
+                            background: 'transparent',
+                            border: 'none',
+                            cursor: 'pointer',
+                            color: 'var(--danger-color)',
+                            padding: '4px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                            fontSize: '0.8rem',
+                            fontWeight: '500'
+                        }}
+                    >
+                        <Trash2 size={14} />
+                        Empty
+                    </button>
                 </div>
                 <span className="note-count">{filteredNotes.length} notes</span>
             </div>
@@ -126,7 +126,7 @@ const NoteList = ({ onMenuClick, isMobile }) => {
                                         }}
                                         title={note.isPinned ? "Unpin note" : "Pin note"}
                                     >
-                                        <Star size={14} className={`skeu-icon ${note.isPinned ? 'active' : ''}`} />
+                                        <Star size={14} className={`skeu-icon ${note.isPinned ? 'active' : ''}`} fill={note.isPinned ? "currentColor" : "none"} />
                                     </button>
                                 )}
                             </div>

@@ -210,6 +210,14 @@
     color: var(--danger-color);
 }
 
+.pin-toolbar-btn.active {
+    color: #f1c40f !important;
+}
+
+.pin-toolbar-btn.active:hover {
+    color: #f39c12 !important;
+}
+
 .editor-body {
     flex: 1;
     overflow-y: auto;

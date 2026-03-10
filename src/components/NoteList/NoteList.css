@@ -192,3 +192,29 @@
 .note-card.has-tab.active {
     border-right: 2px solid var(--accent-color);
 }
+
+.pin-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    opacity: 0.5;
+    transition: all 0.2s ease;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.pin-btn:hover {
+    opacity: 1;
+    background-color: var(--bg-tertiary);
+}
+
+.pin-btn.active {
+    opacity: 1;
+    color: #f1c40f;
+    /* Gold color */
+}
+
+.pin-btn.active .skeu-icon {
+    filter: drop-shadow(0 0 4px rgba(241, 196, 15, 0.4));
+}
