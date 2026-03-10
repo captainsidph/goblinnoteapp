@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import FluentEmoji from '../FluentEmoji.jsx';
 import './CreateModal.css';
 
@@ -17,7 +18,7 @@ const CreateModal = ({ type, isOpen, onClose, onConfirm, parents = [] }) => {
         onClose();
     };
 
-    return (
+    return createPortal(
         <div className="modal-overlay">
             <div className="modal-content">
                 <div className="modal-header">
@@ -55,7 +56,8 @@ const CreateModal = ({ type, isOpen, onClose, onConfirm, parents = [] }) => {
                     </div>
                 </form>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 };
 

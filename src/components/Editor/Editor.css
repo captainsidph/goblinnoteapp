@@ -219,13 +219,13 @@
 }
 
 .editor-body.plain-text-body {
-    overflow-y: auto;
-    /* Move scroll back up to the body so it's consistent */
+    overflow: hidden;
+    /* Don't let body scroll, let children scroll */
 }
 
 .editor-textarea {
     width: 100%;
-    min-height: 100%; /* Ensure it fills the scroll area */
+    height: 100%;
     border: none;
     resize: none;
     outline: none;
@@ -234,32 +234,26 @@
     font-family: inherit;
     font-size: 1rem;
     line-height: 1.6;
+    overflow-y: auto;
 }
 
 .editor-textarea::placeholder {
     color: var(--text-muted);
 }
 
-/* Width Constraints */
-.editor-textarea-wrapper.optimum-width {
-    padding: 1rem 2rem 2rem 2rem;
+.editor-textarea-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
 .editor-textarea-wrapper.optimum-width .editor-textarea {
-    max-width: 800px;
-    margin: 0 auto;
-    display: block;
+    padding: 2rem calc(max(2rem, (100% - 800px) / 2)) 2rem;
 }
 
 .editor-textarea-wrapper.full-width .editor-textarea {
     padding: 1rem 2rem 2rem 2rem;
-}
-
-/* full-width logic handled above or via parent */
-
-.editor-textarea-wrapper {
-    display: flex;
-    flex-direction: column;
 }
 
 .editor-empty {
@@ -386,20 +380,19 @@
 
 /* Markdown Preview Styles */
 .markdown-preview {
-    padding: 20px 40px;
     color: var(--text-primary);
     line-height: 1.6;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
 }
 
 .markdown-preview.optimum-width {
-    max-width: 800px;
-    margin: 0 auto;
-    width: 100%;
+    padding: 20px calc(max(40px, (100% - 800px) / 2));
 }
 
 .markdown-preview.full-width {
-    max-width: 100%;
-    width: 100%;
+    padding: 20px 40px;
 }
 
 .markdown-preview h1,

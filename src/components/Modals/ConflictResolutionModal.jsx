@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useNotes } from '../../context/NoteContext';
 import FluentEmoji from '../FluentEmoji.jsx';
 import './CreateModal.css';
@@ -23,7 +24,7 @@ const ConflictResolutionModal = ({ isOpen, conflicts, onClose }) => {
         }
     };
 
-    return (
+    return createPortal(
         <div className="modal-overlay" style={{ zIndex: 1100 }}> {/* Higher z-index than Settings */}
             <div className="modal-content" onClick={e => e.stopPropagation()} style={{ maxWidth: '700px' }}>
                 <div className="modal-header">
@@ -71,7 +72,8 @@ const ConflictResolutionModal = ({ isOpen, conflicts, onClose }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 };
 

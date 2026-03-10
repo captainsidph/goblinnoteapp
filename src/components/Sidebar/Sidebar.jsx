@@ -115,11 +115,12 @@ const Sidebar = ({ onSelect }) => {
         addTag,
         deleteFolder,
         deleteTag,
-        setTheme
+        setTheme,
+        isSettingsOpen,
+        setIsSettingsOpen
     } = useNotes();
 
     const [modal, setModal] = useState({ isOpen: false, type: null });
-    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [expandedIds, setExpandedIds] = useState([]);
     const [showCalendar, setShowCalendar] = useState(false);
     const [showThemeMenu, setShowThemeMenu] = useState(false); // New state for theme menu
@@ -400,10 +401,6 @@ const Sidebar = ({ onSelect }) => {
                 onClose={() => setModal({ ...modal, isOpen: false })}
                 onConfirm={handleCreate}
                 parents={modal.type === 'folder' ? folders : tags}
-            />
-            <SettingsModal
-                isOpen={isSettingsOpen}
-                onClose={() => setIsSettingsOpen(false)}
             />
         </>
     );

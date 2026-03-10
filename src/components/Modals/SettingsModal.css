@@ -131,3 +131,56 @@
     background-color: var(--bg-hover);
     color: var(--text-primary);
 }
+
+/* Unique high-priority styles for Settings Modal */
+.settings-modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-color: rgba(0, 0, 0, 0.75) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 100000 !important; /* Extremely high */
+    backdrop-filter: blur(5px) !important;
+}
+
+.settings-modal-content {
+    background-color: var(--bg-primary) !important;
+    padding: 30px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+    width: 90% !important;
+    max-width: 650px !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    border: 1px solid var(--border-color) !important;
+    position: relative !important;
+    color: var(--text-primary) !important;
+}
+
+.modal-header h2 {
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.close-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    background: var(--bg-tertiary);
+    transform: rotate(90deg);
+}

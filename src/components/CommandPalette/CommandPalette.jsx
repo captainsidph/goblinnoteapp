@@ -12,7 +12,8 @@ const CommandPalette = () => {
         toggleTheme,
         theme,
         setTheme, // Need this for specific theme commands
-        setIsSettingsOpen // Assuming we expose this in context or need to find another way
+        isSettingsOpen,
+        setIsSettingsOpen
     } = useNotes();
 
     const [isOpen, setIsOpen] = useState(false);
@@ -121,6 +122,15 @@ const CommandPalette = () => {
             category: 'Themes',
             action: () => {
                 setTheme('gruvbox');
+            }
+        },
+        {
+            id: 'open-settings',
+            title: 'Open Settings',
+            icon: <FluentEmoji name="Gear" size={18} />,
+            category: 'Commands',
+            action: () => {
+                setIsSettingsOpen(true);
             }
         }
     ];

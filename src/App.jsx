@@ -9,8 +9,10 @@ import EmptyStateModal from './components/Modals/EmptyStateModal';
 import ErrorBoundary from './components/ErrorBoundary';
 import CommandPalette from './components/CommandPalette/CommandPalette';
 
+import SettingsModal from './components/Modals/SettingsModal';
+
 const AppContent = () => {
-  const { activePage } = useNotes();
+  const { activePage, isSettingsOpen, setIsSettingsOpen } = useNotes();
 
   return (
     <>
@@ -20,6 +22,10 @@ const AppContent = () => {
         editor={<Editor />}
       />
       <CommandPalette />
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+      />
     </>
   );
 };

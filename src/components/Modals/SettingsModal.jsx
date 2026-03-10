@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useNotes } from '../../context/NoteContext';
 import FluentEmoji from '../FluentEmoji.jsx';
 import './CreateModal.css'; // Reusing modal base styles
@@ -183,9 +184,9 @@ const SettingsModal = ({ isOpen, onClose }) => {
         }
     };
 
-    return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={e => e.stopPropagation()} style={{ maxWidth: '600px', maxHeight: '85vh', overflowY: 'auto' }}>
+    return createPortal(
+        <div className="settings-modal-overlay" onClick={onClose}>
+            <div className="settings-modal-content" onClick={e => e.stopPropagation()}>
                 <div className="modal-header">
                     <h2>Settings</h2>
                     <button className="close-btn" onClick={onClose}><FluentEmoji name="Clear" size={18} /></button>
@@ -390,7 +391,8 @@ const SettingsModal = ({ isOpen, onClose }) => {
                     setConflicts([]);
                 }}
             />
-        </div>
+        </div>,
+        document.body
     );
 };
 

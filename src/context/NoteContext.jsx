@@ -22,6 +22,7 @@ export const NoteProvider = ({ children }) => {
     const [viewMode, setViewMode] = useState('default'); // 'default', 'list', 'focus'
     const [noteWidth, setNoteWidth] = useState('optimum'); // 'optimum', 'full'
     const [activePage, setActivePage] = useState('notes'); // 'notes', 'tasks'
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
     // Tab management state
     const [openTabs, setOpenTabs] = useState(() => {
@@ -798,6 +799,8 @@ export const NoteProvider = ({ children }) => {
         checkForRedirect,
         disconnectDropbox,
         isDropboxConnected,
+        isSettingsOpen,
+        setIsSettingsOpen,
         getDropboxRedirectUri,
         uploadBackup,
         listCloudBackups,

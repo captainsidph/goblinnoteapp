@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { useNotes } from '../../context/NoteContext';
 import FluentEmoji from '../FluentEmoji.jsx';
 import './Modal.css';
@@ -68,7 +69,7 @@ const EmptyStateModal = () => {
 
     const content = getContent();
 
-    return (
+    return createPortal(
         <div className="modal-overlay" onClick={handleOverlayClick}>
             <div className="modal-content">
                 <div className="modal-icon-wrapper">
@@ -98,7 +99,8 @@ const EmptyStateModal = () => {
                     )}
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 };
 

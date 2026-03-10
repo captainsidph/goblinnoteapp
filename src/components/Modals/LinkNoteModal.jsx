@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import FluentEmoji from '../FluentEmoji.jsx';
 import { useNotes } from '../../context/NoteContext';
 import './LinkNoteModal.css';
@@ -19,7 +20,7 @@ const LinkNoteModal = ({ isOpen, onClose, onSelectNote }) => {
 
     if (!isOpen) return null;
 
-    return (
+    return createPortal(
         <div className="link-note-modal-overlay" onClick={onClose}>
             <div className="link-note-modal-content" onClick={e => e.stopPropagation()}>
                 <div className="link-note-modal-header">
@@ -62,7 +63,8 @@ const LinkNoteModal = ({ isOpen, onClose, onSelectNote }) => {
                     )}
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 };
 
